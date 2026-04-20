@@ -1,125 +1,90 @@
-# iGEM2026
+# iGEM2026  
 
-## 🔬 Überblick
+## 🔬 Overview  
 
-Unter `\Repos\` finden sich verschiedene externe GitHub-Repositories, die für unser Projekt relevant sind.  
-Diese lassen sich grob in vier Kategorien einteilen:
+Under `\Repos\`, there are several external GitHub repositories relevant to our project.  
+These can be roughly divided into four categories:
 
-1. **Ultraschall Acquisition (Verasonics)**
-2. **Physik & Simulation**
-3. **Image Analysis & Tracking**
-4. **Machine Learning / Enhancement**
+1. **Ultrasound Acquisition (Verasonics)**  
+2. **Physics & Simulation**  
+3. **Image Analysis & Tracking**  
+4. **Machine Learning / Enhancement**  
 
-Ziel ist es, diese Tools langfristig zu einer gemeinsamen Pipeline zu kombinieren:
+The long-term goal is to combine these tools into a unified pipeline:
 
-Simulation → Verasonics Acquisition → Signal Processing → Image Analysis → ML (optional)
-
----
-
-## 📁 Repositories
-
-### 🟢 1. Ultraschall & Verasonics
-
-#### `Acoustic plate reader`
-- Quelle: Shapiro Lab  
-- Inhalt: Hardware + Verasonics Setup für Ultraschallmessungen  
-- Nutzen für uns:
-  - Verständnis von experimentellen Setups
-  - mögliche Inspiration für eigene Hardware / Messaufbau  
+**Simulation → Verasonics Acquisition → Signal Processing → Image Analysis → ML (optional)**  
 
 ---
 
-#### `xAM-imaging`
-- Quelle: Maresca Lab  
-- Inhalt: xAM (cross-Amplitude Modulation) Imaging für Gas Vesicles  
-- Funktion:
-  - selektive Visualisierung von GVs
-  - unterdrückt Gewebesignal → zeigt hauptsächlich GV Signal  
-- Nutzen für uns:
-  - **zentral für unser Projekt**
-  - ermöglicht direkte Sichtbarkeit von GV-Signalen
-  - Grundlage für späteres Multiplexing (verschiedene Collapse-Drücke)
+## 📁 Repositories  
+
+### 🟢 1. Ultrasound & Verasonics  
+
+#### `Acoustic plate reader`  
+- Source: Shapiro Lab  
+- Content: Hardware + Verasonics setup for ultrasound measurements  
+- Relevance for us:  
+  - Understanding experimental setups  
+  - Potential inspiration for our own hardware / measurement design  
 
 ---
 
-#### `VerasonicsPhantomSequences`
-- Inhalt: Shear Wave Elastography (SWEI) Sequenzen + Auswertung  
-- Funktion:
-  - misst Bewegung im Gewebe
-  - berechnet physikalische Parameter (z. B. Steifigkeit)  
-- Nutzen für uns:
-  - zeigt, wie man **physikalische Information aus Ultraschall extrahiert**
-  - gute Referenz für Tracking und quantitative Analyse  
+#### `xAM-imaging`  
+- Source: Maresca Lab  
+- Content: xAM (cross-Amplitude Modulation) imaging for Gas Vesicles  
+- Function:  
+  - Selective visualization of GVs  
+  - Suppresses tissue signal → primarily displays GV signal  
+- Relevance for us:  
+  - **Central to our project**  
+  - Enables direct visibility of GV signals  
+  - Foundation for future multiplexing (different collapse pressures)  
 
 ---
 
-### 🔵 2. Simulation & Physik
-
-#### `fem`
-- Inhalt: Simulation von Gewebeverhalten unter Ultraschallkräften (ARF)  
-- Funktion:
-  - modelliert Bewegung durch Ultraschall
-  - liefert Ground Truth (Displacement Felder)  
-- Nutzen für uns:
-  - Verständnis der Physik hinter Ultraschall
-  - Grundlage für Simulation von GV-Verhalten  
+#### `VerasonicsPhantomSequences`  
+- Content: Shear Wave Elastography (SWEI) sequences + analysis  
+- Function:  
+  - Measures motion in tissue  
+  - Computes physical parameters (e.g., stiffness)  
+- Relevance for us:  
+  - Demonstrates how to **extract physical information from ultrasound**  
+  - Strong reference for tracking and quantitative analysis  
 
 ---
 
-#### `ultratrack`
-- Inhalt: Ultraschall-Simulation + Tracking  
-- Funktion:
-  - generiert RF-Daten basierend auf simulierten Bewegungen
-  - testet Tracking-Algorithmen  
-- Nutzen für uns:
-  - erlaubt Entwicklung & Validierung von Tracking-Methoden
-  - kann synthetische Trainingsdaten liefern  
+### 🔵 2. Simulation & Physics  
+
+#### `fem`  
+- Content: Simulation of tissue behavior under ultrasound forces (ARF)  
+- Function:  
+  - Models motion induced by ultrasound  
+  - Provides ground truth (displacement fields)  
+- Relevance for us:  
+  - Understanding the physics behind ultrasound  
+  - Basis for simulating GV behavior  
 
 ---
 
-### 🟡 3. Image Analysis & Machine Learning
-
-#### `cyclegan_verasonics`
-- Inhalt: ML Pipeline (U-Net + CycleGAN) für Ultraschallbilder  
-- Funktion:
-  - verbessert Bildqualität (Plane-wave → klinische Qualität)
-  - läuft direkt im Verasonics Workflow  
-- Nutzen für uns:
-  - kann Bildrauschen reduzieren
-  - verbessert GV-Sichtbarkeit (optional)
+#### `ultratrack`  
+- Content: Ultrasound simulation + tracking  
+- Function:  
+  - Generates RF data based on simulated motion  
+  - Tests tracking algorithms  
+- Relevance for us:  
+  - Enables development & validation of tracking methods  
+  - Can provide synthetic training data  
 
 ---
 
-## 🧠 Wie das alles zusammenpasst
+### 🟡 3. Image Analysis & Machine Learning  
 
-Langfristig könnten wir folgende Pipeline aufbauen:
+#### `cyclegan_verasonics`  
+- Content: ML pipeline (U-Net + CycleGAN) for ultrasound images  
+- Function:  
+  - Improves image quality (plane-wave → clinical quality)  
+  - Integrates directly into the Verasonics workflow  
+- Relevance for us:  
+  - Can reduce image noise  
+  - Improves GV visibility (optional)  
 
-(1) Simulation  
-    fem → ultratrack  
-        ↓  
-(2) Experiment  
-    Verasonics + xAM-imaging  
-        ↓  
-(3) Analyse  
-    Tracking / Segmentation  
-        ↓  
-(4) ML (optional)  
-    cyclegan / andere Modelle  
-
----
-
-## 🚀 Wichtigste Takeaways
-
-- **xAM-imaging** ist der Schlüssel für GV-Sichtbarkeit  
-- **VerasonicsPhantomSequences** zeigt, wie man Bewegung analysiert  
-- **ultratrack + fem** helfen uns, Methoden vorab zu testen  
-- **cyclegan** ist optional für bessere Bildqualität  
-
----
-
-## 📌 Nächste Schritte (Vorschlag)
-
-- [ ] xAM Pipeline verstehen und testen  
-- [ ] einfache Tracking-Methode implementieren  
-- [ ] Simulation (ultratrack) für erste Tests nutzen  
-- [ ] entscheiden, ob ML notwendig ist  
